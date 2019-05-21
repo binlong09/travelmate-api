@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @user, status: :ok
+    render json: @user, except: [:password_digest], status: :ok
   end
 
   def create
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @user = User.find(id)
+    @user = User.find(params[:id])
   end
 
   def user_params
